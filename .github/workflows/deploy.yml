@@ -30,5 +30,3 @@ jobs:
             "sudo cp -r * /var/www/html/",
             "sudo systemctl restart nginx"
           ]'
-- name: Debug
-  run: echo "Pipeline started"
