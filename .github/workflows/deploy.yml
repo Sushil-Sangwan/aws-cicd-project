@@ -25,13 +25,10 @@ jobs:
         aws ssm send-command \
           --document-name "AWS-RunShellScript" \
           --targets "Key=tag:Name,Values=web-server" \
-          --comment "Deploying application via GitHub Actions" \
           --parameters 'commands=[
-            "sudo rm -rf /var/www/html/*",
-            "sudo cp -r ./* /var/www/html/",
+            "echo \"Deployed via CI/CD $(date)\" | sudo tee /var/www/html/index.html",
             "sudo chmod -R 755 /var/www/html",
             "sudo chown -R nginx:nginx /var/www/html",
             "sudo systemctl restart nginx"
           ]' \
-          --timeout-seconds 600 \
           --region us-east-1
